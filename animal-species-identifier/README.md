@@ -1,14 +1,14 @@
 # 🦁 Animal Species Identifier
 
-A machine learning model to identify and classify animal species using a Random Forest algorithm with hyperparameter tuning.
+A machine learning model to identify and classify animal species using a Random Forest Classifier with hyperparameter tuning via GridSearchCV.
 
 ## 📋 Overview
 
-This project trains a **Random Forest** model on animal feature data to predict species classification. It uses **GridSearchCV** for automated hyperparameter optimization to maximize model performance.
+This project trains a **Random Forest Classifier** on animal feature data to predict species classification. It uses **GridSearchCV** for automated hyperparameter optimization to maximize model accuracy.
 
 ## 🧠 Model
 
-- **Algorithm:** Random Forest (Regressor / Classifier)
+- **Algorithm:** Random Forest Classifier
 - **Tuning:** GridSearchCV with 5-fold cross-validation
 - **Scaling:** StandardScaler normalization
 
@@ -30,7 +30,15 @@ The notebook loads data from a CSV file. You need to supply your own animal spec
 - [Zoo Animal Classification — Kaggle](https://www.kaggle.com/datasets/uciml/zoo-animal-classification)
 - [Animal Features Dataset — UCI ML Repository](https://archive.ics.uci.edu/dataset/111/zoo)
 
-After loading, update the `target_column` placeholder with your actual label column name (e.g., `'class_type'`, `'species'`).
+After downloading, update the file path in Cell 2:
+```python
+df = pd.read_csv("zoo.csv")  # <-- update to your actual path
+```
+
+Also update the target column name in Cell 3:
+```python
+TARGET_COLUMN = 'class_type'  # <-- update to your actual target column
+```
 
 ## ⚙️ Setup & Installation
 
@@ -43,8 +51,9 @@ jupyter notebook animal_species_identifier.ipynb
 
 ```
 pandas
-scikit-learn
+scikit-learn >= 1.1
 numpy
+matplotlib
 ```
 
 ## 🔧 Hyperparameter Grid
@@ -61,15 +70,7 @@ param_grid = {
 
 ## 📊 Evaluation Metrics
 
-- Mean Squared Error (MSE)
-- R² Score
 - Accuracy Score
+- Classification Report (Precision, Recall, F1 per class)
+- Feature Importance Plot
 
-## ⚠️ Known Issues / TODO
-
-- [ ] Replace placeholder `'target_column'` with actual target column name
-- [ ] Switch from `RandomForestRegressor` to `RandomForestClassifier` for species classification (categorical target)
-- [ ] Use `classification_report` instead of MSE/R² for categorical targets
-- [ ] Add feature importance visualization
-- [ ] Add confusion matrix
-- [ ] Fix cascading `NameError` caused by earlier cell failure — run cells in order after fixing target column
